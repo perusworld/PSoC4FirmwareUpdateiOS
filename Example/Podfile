@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'PSoC4FirmwareUpdateiOS_Example' do
+  pod 'PSoC4FirmwareUpdateiOS', :path => '../'
+
+  target 'PSoC4FirmwareUpdateiOS_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
