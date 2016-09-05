@@ -11,7 +11,10 @@ Bootloader based firmware update library for PSoC4 BLE (4200)
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
+## Implementation Notes
+ - Supports security key
+ - Pending SEND_DATA Implementation
+ - Pending CRC16 Test
 
 ## Installation
 
