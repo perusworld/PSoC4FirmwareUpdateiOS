@@ -83,7 +83,7 @@ extension String {
     }
     
     func asciiArray() -> [UInt8] {
-        return try! unicodeScalars.filter{$0.isASCII()}.map{UInt8($0.value)}
+        return unicodeScalars.filter{$0.isASCII()}.map{UInt8($0.value)}
     }
     
 }
