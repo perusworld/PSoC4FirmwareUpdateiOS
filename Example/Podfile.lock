@@ -1,0 +1,22 @@
+PODS:
+  - Alamofire (3.4.2)
+  - BleComm (0.5.5)
+  - PSoC4FirmwareUpdateiOS (0.1.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 3.4)
+  - BleComm
+  - PSoC4FirmwareUpdateiOS (from `../`)
+
+EXTERNAL SOURCES:
+  PSoC4FirmwareUpdateiOS:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
+  BleComm: 325f6a873a6f1e354b510fb54f9014ed30358027
+  PSoC4FirmwareUpdateiOS: 1ef2511a97ba47628d42ba1db4fa0e597bde3178
+
+PODFILE CHECKSUM: d9002497d2a625880f3ebf18d07cc037b11a99b6
+
+COCOAPODS: 1.0.1

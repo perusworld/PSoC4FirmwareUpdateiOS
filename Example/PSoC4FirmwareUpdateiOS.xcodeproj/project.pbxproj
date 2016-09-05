@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0AF33DC84F115FDAEBD2472F /* Pods_PSoC4FirmwareUpdateiOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB42C903A1D5F5EC50EF5563 /* Pods_PSoC4FirmwareUpdateiOS_Tests.framework */; };
 		1F608A8D5EC404357D61FDF9 /* Pods_PSoC4FirmwareUpdateiOS_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FAE3037C9F073F45C0B7B62 /* Pods_PSoC4FirmwareUpdateiOS_Example.framework */; };
+		5540DF1C1D7D06D000D2BEDE /* BLETableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5540DF1B1D7D06D000D2BEDE /* BLETableViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 		08060681B7AD5CE8CE43E9D9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		2F55E1E6E8DF6CB8520ED60D /* PSoC4FirmwareUpdateiOS.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = PSoC4FirmwareUpdateiOS.podspec; path = ../PSoC4FirmwareUpdateiOS.podspec; sourceTree = "<group>"; };
 		4933AA949E00F217E28F254C /* Pods-PSoC4FirmwareUpdateiOS_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSoC4FirmwareUpdateiOS_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PSoC4FirmwareUpdateiOS_Tests/Pods-PSoC4FirmwareUpdateiOS_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		5540DF1B1D7D06D000D2BEDE /* BLETableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLETableViewController.swift; sourceTree = "<group>"; };
 		581307DE1D7345501C3D0B27 /* Pods-PSoC4FirmwareUpdateiOS_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PSoC4FirmwareUpdateiOS_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PSoC4FirmwareUpdateiOS_Tests/Pods-PSoC4FirmwareUpdateiOS_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* PSoC4FirmwareUpdateiOS_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PSoC4FirmwareUpdateiOS_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		607FACD21AFB9204008FA782 /* Example for PSoC4FirmwareUpdateiOS */ = {
 			isa = PBXGroup;
 			children = (
+				5540DF1B1D7D06D000D2BEDE /* BLETableViewController.swift */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -359,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5540DF1C1D7D06D000D2BEDE /* BLETableViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
