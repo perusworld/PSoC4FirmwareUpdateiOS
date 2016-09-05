@@ -3,7 +3,7 @@ use_frameworks!
 target 'PSoC4FirmwareUpdateiOS_Example' do
   pod 'PSoC4FirmwareUpdateiOS', :path => '../'
   pod 'BleComm'
-  pod 'Alamofire', '~> 3.4'
+  pod 'Alamofire', '~> 3.4.2'
 
   target 'PSoC4FirmwareUpdateiOS_Tests' do
     inherit! :search_paths
