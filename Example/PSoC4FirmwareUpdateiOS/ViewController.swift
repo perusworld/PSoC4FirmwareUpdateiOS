@@ -33,7 +33,7 @@ class ViewController: UIViewController, Logger, UITableViewDataSource, UITableVi
                 self.printLog("Connected \(self.bleComm!.features())")
                 self.btnConnect.setTitle("Disconnect", forState: UIControlState.Normal)
                 self.firmwareUpdater?.startUpdate()
-            },
+            },	
             onDisconnect:{
                 self.printLog("Firmware updated \(self.firmwareUpdater!.firmwareUpdated())")
                 self.printLog("Disconnect")
@@ -55,6 +55,9 @@ class ViewController: UIViewController, Logger, UITableViewDataSource, UITableVi
     
     func onProgress(state: String) {
         print(state)
+        if ("update.failed" == state) {
+            bleComm?.disconnect()
+        }
     }
     
     func onProgress(state: String, current: Int, max: Int) {

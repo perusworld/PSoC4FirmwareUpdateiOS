@@ -82,6 +82,10 @@ extension String {
         return ret
     }
     
+    func asciiArray() -> [UInt8] {
+        return try! unicodeScalars.filter{$0.isASCII()}.map{UInt8($0.value)}
+    }
+    
 }
 
 
@@ -122,15 +126,23 @@ public class FirmwareUpdater: NSObject {
         return nil != commandCode && commandCode == EXIT_BOOTLOADER
     }
 
-    public func startUpdate() {
+    public func startUpdate(securityKey: String = "") {
         rowIndex = 0
         if ("00" == self.firmwareData.checksumType) {
             self.checkSumType = CHECK_SUM
         } else {
             self.checkSumType = CRC_16
         }
-        let data = self.createCommandPacketWithCommand(ENTER_BOOTLOADER, dataLength: 0, row: nil)
-        self.delegate.write(data)
+        if ("" == securityKey) {
+            let data = self.createCommandPacketWithCommand(ENTER_BOOTLOADER, dataLength: 0, row: nil)
+            self.delegate.write(data)
+        } else {
+            let key = securityKey.asciiArray()
+            var row = FirmwareRow()
+            row.dataArray = key
+            let data = self.createCommandPacketWithCommand(ENTER_BOOTLOADER, dataLength: key.count, row: row)
+            self.delegate.write(data)
+        }
     }
 
     func getFlashSize() {
@@ -139,7 +151,7 @@ public class FirmwareUpdater: NSObject {
     }
 
     func programRow(index: Int) {
-        progress.onProgress(STATUS_PROGRESS, current: index, max: firmwareData.data.count)
+        progress.onProgress(STATUS_PROGRESS, current: index + 1, max: firmwareData.data.count)
         var row : FirmwareRow
         let startPos = programRowStartPos
         row = firmwareData.data[rowIndex]
@@ -195,7 +207,7 @@ public class FirmwareUpdater: NSObject {
             commandPacket.append(UInt8(row!.rowNumber & 0xff))
             commandPacket.append(UInt8(row!.rowNumber >> 8))
         }
-        if commandCode == SEND_DATA || commandCode == PROGRAM_ROW {
+        if ((commandCode == SEND_DATA || commandCode == PROGRAM_ROW) || (commandCode == ENTER_BOOTLOADER && 0 < dataLength)) {
             for byte in row!.dataArray {
                 commandPacket.append(byte)
             }
@@ -229,9 +241,13 @@ public class FirmwareUpdater: NSObject {
                 self.onVerifyChecksum(data)
                 break
             default:
+                print(data);
                 progress.onProgress(STATUS_FAILED)
                 break
             }
+        } else {
+            print(data);
+            progress.onProgress(STATUS_FAILED)
         }
     }
 

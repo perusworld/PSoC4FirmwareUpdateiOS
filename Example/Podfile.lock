@@ -1,7 +1,7 @@
 PODS:
   - Alamofire (3.4.2)
   - BleComm (0.5.5)
-  - PSoC4FirmwareUpdateiOS (0.1.0)
+  - PSoC4FirmwareUpdateiOS (0.2.0)
 
 DEPENDENCIES:
   - Alamofire (~> 3.4.2)
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
   BleComm: 325f6a873a6f1e354b510fb54f9014ed30358027
-  PSoC4FirmwareUpdateiOS: 9b4929a8da5150e51084d93fa8d4ef2744caec9e
+  PSoC4FirmwareUpdateiOS: 9130291672a2868d92ecba7c83ef1cde80fe11e0
 
 PODFILE CHECKSUM: 351a752d0cb231a84b5cbb111d8668e56f590a24
 
