@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PSoC4FirmwareUpdateiOS'
-  s.version          = '0.1.0'
+  s.version          = '0.1.3'
   s.summary          = 'Bootloader based firmware update library for PSoC4 BLE (4200)'
 
 # This description is used to generate tags and improve search results.
