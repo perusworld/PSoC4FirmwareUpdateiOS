@@ -4,10 +4,8 @@ import BleComm
 import Alamofire
 import PSoC4FirmwareUpdateiOS
 
-class ViewController: UIViewController, Logger, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, FirmwareCommDelegate, FirmwareUpdateProgressDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, FirmwareCommDelegate, FirmwareUpdateProgressDelegate {
 
-    @IBOutlet weak var txtMsg: UITextField!
-    @IBOutlet weak var btnConnect: UIButton!
     @IBOutlet weak var tblLogs: UITableView!
     
     var bleComm:  BLEComm?
@@ -26,27 +24,23 @@ class ViewController: UIViewController, Logger, UITableViewDataSource, UITableVi
         self.readFirmware()
         bleComm = BLEComm (
             deviceId : deviceId,
-            serviceUUID: demoServiceUUID(),
-            txUUID: txCharacteristicsUUID(),
-            rxUUID: rxCharacteristicsUUID(),
+            serviceUUID: CBUUID(string: "00060000-f8ce-11e4-abf4-0002a5d5c51b"),
+            txUUID: CBUUID(string: "00060001-f8ce-11e4-abf4-0002a5d5c51b"),
+            rxUUID: CBUUID(string: "00060001-f8ce-11e4-abf4-0002a5d5c51b"),
             onConnect:{
-                self.printLog("Connected \(self.bleComm!.features())")
-                self.btnConnect.setTitle("Disconnect", forState: UIControlState.Normal)
+                self.printLog("Connected")
                 self.firmwareUpdater?.startUpdate()
             },	
             onDisconnect:{
                 self.printLog("Firmware updated \(self.firmwareUpdater!.firmwareUpdated())")
                 self.printLog("Disconnect")
-                self.btnConnect.setTitle("Connect", forState: UIControlState.Normal)
             },
             onData: {
                 (string:NSString?, rawData: NSData?)->() in
                 self.firmwareUpdater?.onData(rawData!)
             },
-            mxSize: 150,
-            logger: self
+            mxSize: 150
         )
-        txtMsg.delegate = self
     }
     
     func write(data: NSData) {
@@ -61,7 +55,7 @@ class ViewController: UIViewController, Logger, UITableViewDataSource, UITableVi
     }
     
     func onProgress(state: String, current: Int, max: Int) {
-        print("\(state) \(current) of \(max)")
+        printLog("\(state) \(current) of \(max)")
     }
     
     
@@ -75,7 +69,7 @@ class ViewController: UIViewController, Logger, UITableViewDataSource, UITableVi
                     otaData.parse(response.result.value!)
                     self.firmwareUpdater?.firmwareData = otaData
                 } else {
-                    print("failed")
+                    self.printLog("failed to read firmware file")
                 }
         }
     }
@@ -84,43 +78,8 @@ class ViewController: UIViewController, Logger, UITableViewDataSource, UITableVi
         bleComm!.disconnect()
     }
 
-    @IBAction func connectDisconnect(sender: UIButton) {
-        if ("Disconnect" == sender.titleLabel!.text) {
-            self.printLog("Going to disconnect");
-            bleComm!.disconnect();
-        } else {
-            self.printLog("Going to connect");
-        }
-    }
-    
-    @IBAction func sendMessage(sender: UIButton) {
-        self.bleComm!.writeString(txtMsg.text!)
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    func demoServiceUUID() -> CBUUID {
-        return CBUUID(string: "00060000-f8ce-11e4-abf4-0002a5d5c51b")
-    }
-    
-    func txCharacteristicsUUID() ->  CBUUID {
-        return CBUUID(string: "00060001-f8ce-11e4-abf4-0002a5d5c51b")
-    }
-    
-    func rxCharacteristicsUUID() -> CBUUID {
-        return CBUUID(string: "00060001-f8ce-11e4-abf4-0002a5d5c51b")
-    }
-
-    func printLog(obj:AnyObject, funcName:String) {
-        logs.insert("\(funcName) \(obj.classForCoder?.description()) ", atIndex: 0);
-        tblLogs.reloadData()
-    }
-    
-    func printLog(obj:AnyObject, funcName:String, _ logString:String="") {
-        logs.insert(logString, atIndex: 0)
-        tblLogs.reloadData()
     }
     
     func printLog(logString:String) {
@@ -141,11 +100,6 @@ class ViewController: UIViewController, Logger, UITableViewDataSource, UITableVi
         let row = indexPath.row
         cell.textLabel?.text = logs[row]
         return cell
-    }
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
     
 }

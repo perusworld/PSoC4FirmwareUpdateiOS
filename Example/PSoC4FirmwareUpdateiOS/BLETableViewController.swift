@@ -20,12 +20,12 @@ class BLETableViewController: UITableViewController {
         names = []
         tblEntries.reloadData()
         bleScan = BLEScan (
-            serviceUUID: demoServiceUUID(),
+            serviceUUID: CBUUID(string: "00000000-0000-1000-8000-00805F9B34FB"),
             onScanDone: {
                 (pheripherals:[String:NSUUID]?)->() in
                 for(name, id) in pheripherals! {
-                    self.entries[name] = id
-                    self.names.append(name)
+                    self.entries["\(name) - (\(id.UUIDString))"] = id
+                    self.names.append("\(name) - (\(id.UUIDString))")
                 }
                 self.tblEntries.reloadData()
             }
@@ -44,11 +44,6 @@ class BLETableViewController: UITableViewController {
         return entries.count
     }
     
-    func demoServiceUUID() -> CBUUID {
-        return CBUUID(string: "00000000-0000-1000-8000-00805F9B34FB")
-    }
-
-
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier, forIndexPath: indexPath) as UITableViewCell
